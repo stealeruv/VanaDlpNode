@@ -78,6 +78,9 @@ I've created a 1-click setup script that automates the entire process of setting
    ```bash
    git clone https://github.com/stealeruv/VanaDlpNode.git
    ```
+   ```
+   cd VanaDlpNode
+   ```
    - Save the script above as `vana_setup.sh` in your home directory.
 2. **Make the Script Executable**:
    ```bash
