@@ -86,22 +86,26 @@ vanacli wallet create --wallet.name default --wallet.hotkey default
 
 print_info "Please follow the prompts to set a secure password and save the mnemonic phrases securely."
 
-# Export private keys
-print_info "Exporting coldkey private key..."
-COLDKEY_PRIVATE_KEY=$(vanacli wallet export_private_key --key.cold --no-password | grep 'Private Key:' | awk '{print $NF}')
+# Prompt user to input private keys manually
+print_info "Enter your private keys manually:"
 
-print_info "Exporting hotkey private key..."
-HOTKEY_PRIVATE_KEY=$(vanacli wallet export_private_key --key.hot --no-password | grep 'Private Key:' | awk '{print $NF}')
+read -p "Enter Coldkey Private Key: " COLDKEY_PRIVATE_KEY
+read -p "Enter Hotkey Private Key: " HOTKEY_PRIVATE_KEY
 
-# Export wallet addresses
-print_info "Retrieving coldkey address..."
-COLDKEY_ADDRESS=$(vanacli wallet address --key.cold | grep 'Address:' | awk '{print $NF}')
+# Display the inputted private keys
+print_info "Coldkey Private Key: $COLDKEY_PRIVATE_KEY"
+print_info "Hotkey Private Key: $HOTKEY_PRIVATE_KEY"
 
-print_info "Retrieving hotkey address..."
-HOTKEY_ADDRESS=$(vanacli wallet address --key.hot | grep 'Address:' | awk '{print $NF}')
+# Prompt user to input wallet addresses manually
+print_info "Enter your wallet addresses manually:"
 
+read -p "Enter Coldkey Address: " COLDKEY_ADDRESS
+read -p "Enter Hotkey Address: " HOTKEY_ADDRESS
+
+# Display the inputted wallet addresses
 print_info "Coldkey Address: $COLDKEY_ADDRESS"
 print_info "Hotkey Address: $HOTKEY_ADDRESS"
+
 
 # Prompt user to add wallets to MetaMask and fund with testnet VANA
 print_info "Please add your coldkey and hotkey addresses to MetaMask and fund them with testnet VANA from https://faucet.vana.org"
@@ -138,11 +142,18 @@ sed -i "s|^DLP_TOKEN_SYMBOL=.*|DLP_TOKEN_SYMBOL=\"${DLP_TOKEN_SYMBOL}\"|" .env
 print_info "Deploying smart contracts to Moksha testnet..."
 npx hardhat deploy --network moksha --tags DLPDeploy
 
-# Capture deployed contract addresses
-print_info "Capturing deployed contract addresses..."
-DLP_MOKSHA_CONTRACT=$(cat deployments/moksha/DataLiquidityPool.json | grep '"address":' | head -1 | awk -F'"' '{print $4}')
-DLP_TOKEN_MOKSHA_CONTRACT=$(cat deployments/moksha/DataLiquidityPoolToken.json | grep '"address":' | head -1 | awk -F'"' '{print $4}')
+# Prompt user for deployed contract addresses
+print_info "Please provide the deployed contract addresses."
+read -p "Enter DataLiquidityPool Contract Address: " DLP_MOKSHA_CONTRACT
+read -p "Enter DataLiquidityPoolToken Contract Address: " DLP_TOKEN_MOKSHA_CONTRACT
 
+# Validate if the input is empty
+if [ -z "$DLP_MOKSHA_CONTRACT" ] || [ -z "$DLP_TOKEN_MOKSHA_CONTRACT" ]; then
+  print_error "Error: Both contract addresses must be provided."
+  exit 1
+fi
+
+# Show the provided addresses
 print_info "DataLiquidityPool Contract Address: $DLP_MOKSHA_CONTRACT"
 print_info "DataLiquidityPoolToken Contract Address: $DLP_TOKEN_MOKSHA_CONTRACT"
 
