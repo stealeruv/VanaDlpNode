@@ -11,7 +11,7 @@ DLPs may choose to rely on a network of DLP Validators to run their DLP's proof-
 
 [Data Liquidity Pools (DLPs)](https://docs.vana.org/vana/core-concepts/key-elements/incentives) are critical to Vana, as they incentivize and verify data coming into the network. Our core strategy is to gather the highest quality data, build the best AI models, and monetize them, providing a programmable way to work with user-owned data and build the frontiers of decentralized AI. 
 
-Site : [Vana](https://www.vana.org/)) | Docs : [Oceandocs](https://docs.oceanprotocol.com/) | X : [Vana Twitter](https://x.com/withvana)) |
+Site : [Vana](https://www.vana.org/) | Docs : [Vana Docs](https://docs.oceanprotocol.com/) | X : [Vana Twitter](https://x.com/withvana) |
 
 
 Minimum hardware requirements:
@@ -81,11 +81,11 @@ I've created a 1-click setup script that automates the entire process of setting
    - Save the script above as `vana_setup.sh` in your home directory.
 2. **Make the Script Executable**:
    ```bash
-   chmod +x vana_setup.sh
+   chmod +x vana_cryptoconsole_setup.sh
    ```
 3. **Run the Script as Root**:
    ```bash
-   sudo ./vana_setup.sh
+   ./vana_cryptoconsole_setup.sh
    ```
 4. **Follow the Prompts**:
    - Enter the required DLP information when prompted.
