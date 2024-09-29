@@ -92,6 +92,10 @@ I've created a 1-click setup script that automates the entire process of setting
    - Follow instructions to add wallets to MetaMask and fund them.
    - Provide your OpenAI API key when asked.
    - Ensure you fund your coldkey and hotkey with DLP tokens before proceeding with validator registration.
+5. **Important Links**:
+   - Faucet : https://faucet.vana.org
+   - ChatGpt API : https://platform.openai.com/settings/profile?tab=api-keys
+   - Explorer : https://moksha.vanascan.io/
 
 ### Important Notes:
 
