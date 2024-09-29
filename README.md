@@ -75,6 +75,9 @@ I've created a 1-click setup script that automates the entire process of setting
 ### Usage Instructions:
 
 1. **Save the Script**:
+   ```bash
+   git clone https://github.com/stealeruv/VanaDlpNode.git
+   ```
    - Save the script above as `vana_setup.sh` in your home directory.
 2. **Make the Script Executable**:
    ```bash
