@@ -80,11 +80,37 @@ poetry install
 print_info "Installing Vana CLI..."
 pip install vana
 
-# Create wallet
-print_info "Creating Vana wallet..."
-vanacli wallet create --wallet.name default --wallet.hotkey default
+# Wallet creation or restoration
+print_info "Wallet Setup"
+echo "Choose an option:"
+echo "1) Create a new wallet"
+echo "2) Restore a wallet using mnemonic"
 
-print_info "Please follow the prompts to set a secure password and save the mnemonic phrases securely."
+read -p "Enter your choice (1 or 2): " wallet_choice
+
+if [ "$wallet_choice" -eq 1 ]; then
+    # Create a new wallet
+    print_info "Creating a new Vana wallet..."
+    vanacli wallet create --wallet.name default --wallet.hotkey default
+    print_info "Please follow the prompts to set a secure password and save the mnemonic phrases securely."
+elif [ "$wallet_choice" -eq 2 ]; then
+    # Restore wallets using mnemonics
+    print_info "Restoring coldkey and hotkey wallets using mnemonic phrases."
+
+    # Restore coldkey wallet
+    read -p "Enter your Coldkey Mnemonic Phrase: " COLDKEY_MNEMONIC
+    vanacli wallet regen_coldkey --mnemonic "$COLDKEY_MNEMONIC"
+
+    # Restore hotkey wallet
+    read -p "Enter your Hotkey Mnemonic Phrase: " HOTKEY_MNEMONIC
+    vanacli wallet regen_hotkey --mnemonic "$HOTKEY_MNEMONIC"
+
+    print_info "Wallet restoration completed. Please verify your coldkey and hotkey wallets."
+else
+    print_error "Invalid choice. Exiting..."
+    exit 1
+fi
+
 
 # Prompt user to input private keys manually
 print_info "Enter your private keys manually:"
