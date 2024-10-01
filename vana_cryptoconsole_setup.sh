@@ -159,7 +159,8 @@ cp .env.example .env
 
 # Edit .env file
 print_info "Configuring .env file for smart contracts..."
-sed -i "s|^PRIVATE_KEY=.*|PRIVATE_KEY=\"${COLDKEY_PRIVATE_KEY}\"|" .env
+sed -i "s|^DEPLOYER_PRIVATE_KEY=.*|DEPLOYER_PRIVATE_KEY=\"${COLDKEY_PRIVATE_KEY}\"|" .env
+sed -i "s|^OWNER_ADDRESS=.*|OWNER_ADDRESS=\"${COLDKEY_ADDRESS}\"|" .env
 sed -i "s|^DLP_NAME=.*|DLP_NAME=\"${DLP_NAME}\"|" .env
 sed -i "s|^DLP_TOKEN_NAME=.*|DLP_TOKEN_NAME=\"${DLP_TOKEN_NAME}\"|" .env
 sed -i "s|^DLP_TOKEN_SYMBOL=.*|DLP_TOKEN_SYMBOL=\"${DLP_TOKEN_SYMBOL}\"|" .env
